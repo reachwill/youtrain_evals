@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Trainer Led Evaluation Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="js/slider/dist/rangeSlider.css">
+    <link rel="stylesheet" href="js/chosen/chosen.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Trainer Led Evaluation Form</h1>
+        <h2>All details you provide will remain strictly confidential and will only be used to enable us to enhance everyone's experience in Youtrain.</h2>
+    </header>
+
+    <!--
+    NOTE: The client server logic requires all form field names to exactly match the database field names.
+    If you need to add a new field to the evaluation form see instructions located in php/saveEval.php
+    -->
+
+    <form id="evalFrm">
+
+        <fieldset class="details">
+            <legend>Your Details</legend>
+            <ul>
+                <li class="formitem">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" name="firstname" id="firstname" required value="will">
+                    <label for="name" class="error"></label>
+                </li>
+                <li class="formitem">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" name="lastname" id="lastname" required value="gregory">
+                    <label for="name" class="error"></label>
+                </li>
+                <li class="formitem">
+                    <label for="name">Company:</label>
+                    <input type="text" name="company" id="company" required value="will LTD">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Email:</label>
+                    <input type="email" name="email" id="email" required value="w@w.com">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Tel:</label>
+                    <input type="text" name="tel" id="tel" required value="3646346">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Course:</label>
+                    <select name="course" class="chosen-select" id="course"></select>
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Trainer:</label>
+                    <input type="text" name="trainer" id="trainer" required value="trainer">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Start Date:</label>
+                    <input type="text" name="start" id="start" required>
+
+                </li>
+                <li class="formitem">
+
+                    <input type="hidden" name="date" id="date" readonly>
+
+                </li>
+            </ul>
+        </fieldset>
+
+        <h2>Please indicate your overall perception of your training experience:</h2>
+
+
+        <fieldset>
+            <legend>Your Trainer</legend>
+            <ul>
+
+                <li>
+                    <div class="question">
+                        <label for="enthusiastic">The trainer was enthusiastic about teaching:</label>
+                        <output></output>
+                        <input name="enthusiastic" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+                <li>
+                    <div class="question">
+                        <label for="knowledgeable">The trainer is knowledgeable:</label>
+                        <output></output>
+                        <input name="knowledgeable" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+                <li>
+                    <div class="question">
+                        <label for="prepared">The trainer is well prepared:</label>
+                        <output></output>
+                        <input name="prepared" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+                <li>
+                    <div class="question">
+                        <label for="participation">The trainer encourages participation:</label>
+                        <output></output>
+                        <input name="participation" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="question">
+                        <label for="communicates">The trainer communicates clearly:</label>
+                        <output></output>
+                        <input name="communicates" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+
+                <li>
+                    <label class="block" for="trainerComments">Please add any comments:</label>
+                    <textarea name="trainerComments" id="trainerComments"></textarea>
+                </li>
+
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>Course Content &amp; Structure</legend>
+            <ul>
+                <li>
+                    <div class="question">
+                        <label for="objectives">The course objectives are clearly stated:</label>
+                        <output></output>
+                        <input name="objectives" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="question">
+                        <label for="organised">The course is well organised:</label>
+                        <output></output>
+                        <input name="organised" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="question">
+                        <label for="pace">The pace of the course is appropriate:</label>
+                        <output></output>
+                        <input name="pace" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+                <li>
+                    <div class="question">
+                        <label for="activities">The course activities are useful:</label>
+                        <output></output>
+                        <input name="activities" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+                <li>
+                    <label class="block" for="courseComments">Please add any comments:</label>
+                    <textarea name="courseComments" id="courseComments"></textarea>
+
+                </li>
+
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>Classroom &amp; Personnel</legend>
+            <ul>
+                <li>
+                    <div class="question">
+                        <label for="confirmation">I received full booking confirmation and course details prior to course commencement:</label>
+                        <output></output>
+                        <input name="confirmation" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+                <li>
+                    <div class="question">
+                        <label for="classroom">The classroom is comfortable:</label>
+                        <output></output>
+                        <input name="classroom" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+                <li>
+                    <div class="question">
+                        <label for="equipment">The equipment functions properly:</label>
+                        <output></output>
+                        <input name="equipment" type="range" min="1" max="6" step="1" data-rangeSlider>
+                    </div>
+                </li>
+                <li>
+                    <label class="block" for="classroomComments">Please add any comments:</label>
+                    <textarea name="classroomComments" id="classroomComments"></textarea>
+
+                </li>
+
+            </ul>
+        </fieldset>
+
+        <fieldset class="further-details">
+            <legend>Further Details</legend>
+            <ul>
+                <li class="formitem">
+                    <label for="comments">Are there any further comments or suggestions you would like to make with regards to the training course you have attended?</label>
+                    <textarea name="comments" id="comments"></textarea>
+                </li>
+                <li class="formitem">
+                    <label for="other_courses">Are there any other courses which would be of interest to you?</label>
+                    <textarea name="other_courses" id="other_courses"></textarea>
+                </li>
+                <li class="formitem">
+                    Would you recommend YouTrain to colleagues/friends/aquaintances?
+                    <br>
+                    <label for="recommend">Yes
+                        <input type="radio" name="recommend" value="recommend">
+                    </label>
+                </li>
+                <li class="formitem">
+                    May we use your comments?
+                    <br>
+                    <label for="canuse">Yes
+                        <input type="radio" name="canuse" value="canuse">
+                    </label>
+
+                </li>
+
+                <li>
+                    <button type="submit" id="submit">Finish</button>
+                </li>
+
+
+            </ul>
+
+
+        </fieldset>
+
+    </form>
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="js/slider/dist/rangeSlider.js"></script>
+    <script src="js/chosen/chosen.jquery.js"></script>
+    <script>
+        $(function() {
+
+            //hide testing inout value defaults
+            $('.details input').val('');
+
+
+
+            //GET COURSES FOR SELECT LOGIC **********************************************************//
+            //function to extract URL params
+            function getParameterByName(name, url) {
+                if (!url) {
+                    url = window.location.href;
+                }
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            //function to get courses from DB and display in courses select menu
+            function getCourses() {
+                //create data object which will act as payload in AJAX request to server side code
+                var data = {};
+                //check if there is a URL param to act as a filter server side
+                if (getParameterByName('c') != undefined) {
+                    //if there is a URL param called c add it to the data payload
+                    data.c = getParameterByName('c');
+                }
+                //send AJAX request to server to retrieve courses
+                $.ajax({
+                    url: 'php/getCourses.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data: data,
+                    success: function(data) {
+                        /*
+                        data model returned is an array of objects. each object is modelled like so:
+                        {
+                          courseTypeId:NUMBER,
+                          courseTypeTitle:STRING,
+                          courses:ARRAY[
+                            {
+                              courseId:NUMBER,
+                              courseTitle:STRING
+                            }
+                          ]
+                        }
+                        */
+                        //start adding elements to the #course select menu
+                        $('#course').append('<option value="">Select your course...</option>');
+                        //loop thru each object in the array of results of AJAX request
+                        var numCourseTypes = data.length;
+                        for (var i = 0; i < numCourseTypes; i++) {
+                            //start concatenating the optgroup string
+                            var optGroup = '<optgroup label="' + data[i].courseTypeTitle + '">';
+                            //now loop thru each course in the objects's courses array
+                            var numCourses = data[i].courses.length;
+                            for (var c = 0; c < numCourses; c++) {
+                                //add an option for each course
+                                optGroup += '<option value="' + data[i].courses[c].courseId + '">' + data[i].courses[c].courseTitle + '</option>';
+                            }
+                            //complete the optgroup string
+                            optGroup += '</optgroup>';
+                            //add it to the select menu
+                            $('#course').append(optGroup);
+                        }
+                        //add 'chosen' jquery plugin functionality to the select menu
+                        $('#course').chosen(config);
+                    },
+                    error: function(h, m, s) {
+                        console.log(m);
+                    }
+                });
+            }
+            getCourses();
+
+            //END GET COURSES FOR SELECT LOGIC **********************************************************//
+
+
+            //DIALOG **********************************************************//
+            $('#dialog').dialog({
+                modal: true,
+                autoOpen: false,
+                title: 'Thank you!'
+            });
+            //END DIALOG **********************************************************//
+
+            //CHOSEN SELECTOR SETTINGS **********************************************************//
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': {
+                    allow_single_deselect: true
+                },
+                '.chosen-select-no-single': {
+                    disable_search_threshold: 10
+                },
+                '.chosen-select-no-results': {
+                    no_results_text: 'Oops, nothing found!'
+                },
+                '.chosen-select-width': {
+                    width: "95%"
+                }
+            }
+
+            //END CHOSEN SELECTOR SETTINGS **********************************************************//
+
+
+            //RANGE SLIDER LOGIC **********************************************************//
+
+            var selector = '[data-rangeSlider]',
+                elements = document.querySelectorAll(selector);
+
+
+            function valueOutput(element) {
+                var feedback = ['Very Poor', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+                var value = element.value,
+                    output = element.parentNode.getElementsByTagName('output')[0];
+                output.innerHTML = feedback[element.value - 1] //+ ' : ' + value;
+            }
+
+            for (var i = elements.length - 1; i >= 0; i--) {
+                valueOutput(elements[i]);
+            }
+
+            Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function(el) {
+                el.addEventListener('input', function(e) {
+                    valueOutput(e.target);
+                }, false);
+            });
+
+            // Basic rangeSlider initialization
+            rangeSlider.create(elements, {
+
+                // Callback function
+                onInit: function() {},
+
+                // Callback function
+                onSlideStart: function(value, percent, position) {
+                    //console.info('onSlideStart', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+                },
+
+                // Callback function
+                onSlide: function(value, percent, position) {
+                    //console.log('onSlide', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+                },
+
+                // Callback function
+                onSlideEnd: function(value, percent, position) {
+                    //console.warn('onSlideEnd', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+                }
+            });
+
+
+            //END RANGE SLIDER LOGIC **********************************************************//
+
+            //populate today's date into #date hidden form field
+            var today = new Date();
+            var y = today.getFullYear();
+            var m = ((today.getMonth() + 1) < 10) ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1);
+            var d = ((today.getDate()) < 10) ? '0' + (today.getDate()) : (today.getDate() + 1)
+            var dateStr = y + '-' + m + '-' + d;
+            $('#date').val(dateStr);
+
+
+            //jqueryui datepickers
+            $('#start,#today').datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+            $('#start,#today').datepicker("setDate", new Date()); //set to today's date default
+
+            //make it easier to select radio button by listening for click on label
+            // $('label').click(function(e) {
+            //     if ($(this).has('input[type=radio]')) {
+            //         $(this).find('input[type=radio]').attr('checked', true);
+            //     }
+            // });
+
+
+            //when user clicks to submit eval form
+            $('#submit').click(function(e) {
+                //validate signup form on keyup and submit -  jQUERY validate plugin
+                $("#evalFrm").validate({
+                    rules: {
+                        email: {
+                            email: true
+                        }
+                    },
+                    messages: {
+                        firstname: "Please enter your first name",
+                        lastname: "Please enter your last name",
+                        company: "Please enter your company",
+                        tel: "Please enter your tel no",
+                        email: "Please enter your email",
+                        course: "Please select a course",
+                        trainer: "Please enter the name of your trainer",
+                        start: "Please enter the start date of the course",
+                        // today: "Please enter today's date",
+                        // enthusiastic: "Please select a value",
+                        // knowledgeable: "Please select a value",
+                        // prepared: "Please select a value",
+                        // participation: "Please select a value",
+                        // communicates: "Please select a value",
+                        // objectives: "Please select a value",
+                        // organised: "Please select a value",
+                        // pace: "Please select a value",
+                        // activities: "Please select a value",
+                        // confirmation: "Please select a value",
+                        // classroom: "Please select a value",
+                        // equipment: "Please select a value"
+
+
+                    },
+                    submitHandler: function(form) {
+                        //create object to act as payload for AJAX request
+                        var data = {};
+                        /*
+                        now loop thru each input element in the form and add to data object.
+                        If the form element is named for example "organised" (name="organised") and the user has set the value to 5
+                        then the result in the data object will be:
+
+                        organised = 5
+
+                        The switch statement has been used to allow for various field types ie radio button groups
+                        */
+                        $('input').each(function(index, element) {
+                            switch (element.type) {
+                                case 'text':
+                                    data[element.name] = element.value;
+                                    break;
+                                case 'email':
+                                    data[element.name] = element.value;
+                                    break;
+                                case 'hidden':
+                                    data[element.name] = element.value;
+                                    break;
+                                case 'radio':
+                                    data[element.name] = $('input:radio[name="' + element.name + '"]:checked').val();
+                                    if(data[element.name]==undefined){
+                                      data[element.name]=0;
+                                    }
+                                    break;
+                                case 'range':
+                                    data[element.name] = element.value;
+                                    break;
+                            }
+                        });
+                        //when looping thru textareas and select we need to escape in case of special chars which cause syntax error in the JSON
+                        $('textarea').each(function(index, element) {
+                            data[element.name] = escape(element.value);
+                        });
+
+                        $('select').each(function(index, element) {
+                            data[element.name] = escape(element.value);
+                        });
+
+
+                        //jquery validate doesn't validate course select (maybe cos of select_chosen plugin)
+                        //so custom validation for the course select
+
+                        var ready = true;
+
+                        if ($('#course').val() == '') {
+                            var messageStr = '<label id="course-error" class="error" for="course">Please select a course</label>';
+                            $('#course_chosen').after(messageStr);
+
+                            $('body').scrollTop(100);
+
+                            ready = false;
+
+                        }
+
+                        //if all reqady to go send the AJAX request
+                        if (ready) {
+                            // console.log(data);
+                            $.ajax({
+                                url: 'php/saveEval.php',
+                                type: 'post',
+                                dataType: 'text',
+                                data: data,
+                                success: function(data) {
+                                    $('#dialog').dialog('open');
+                                },
+                                error: function(h, m, s) {
+                                    //console.log(m);
+                                }
+                            });
+                        }
+
+
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <!--
+    this div acts as the dialog box displayed at the end of the submission process saying thanks.
+    It is defined as a jQUeryUI dialog box in the javascript code
+    -->
+    <div id="dialog">
+        <p>
+            Thank you for completing the evaluation. We appreciate your time in completing this evaluation.
+        </p>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Trainer Led Evaluation Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css">
+</head>
+
+<body>
+
+    <header>
+        <h2>Trainer Led Evaluation Form</h2>
+        <p>All details you provide will remain strictly confidential and will only be used to enable us to enhance everyone's experience in Youtrain.</p>
+    </header>
+
+    <form id="evalFrm">
+
+        <fieldset class="details">
+            <legend>Your Details</legend>
+            <ul>
+                <li class="formitem">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" name="firstname" id="firstname" required value="will">
+                    <label for="name" class="error"></label>
+                </li>
+                <li class="formitem">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" name="lastname" id="lastname" required value="gregory">
+                    <label for="name" class="error"></label>
+                </li>
+                <li class="formitem">
+                    <label for="name">Company:</label>
+                    <input type="text" name="company" id="company" required value="will LTD">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Email:</label>
+                    <input type="email" name="email" id="email" required value="w@w.com">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Tel:</label>
+                    <input type="text" name="tel" id="tel" required value="3646346">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Course:</label>
+                    <select name="course">
+                        <option value="HTML5/CSS3">HTML5/CSS3</option>
+                        <option value="Javascript">Javascript</option>
+                        <option value="PHP">PHP</option>
+                        <option value="Wordpress">Wordpress</option>
+                        <option value="Mobile Apps">Mobile Apps</option>
+                    </select>
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Trainer:</label>
+                    <input type="text" name="trainer" id="trainer" required value="trainer">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Start Date:</label>
+                    <input type="text" name="start" id="start" required value="2016-01-01">
+
+                </li>
+                <li class="formitem">
+                    <label for="name">Date:</label>
+                    <input type="hidden" name="date" id="date" readonly value="2016-02-01">
+
+                </li>
+            </ul>
+        </fieldset>
+
+        <p>Please indicate your overall perception of your training experience:</p>
+
+
+        <fieldset>
+            <legend>Your Trainer</legend>
+            <ul>
+
+                <li class="formitem multi">The trainer was enthusiastic about teaching:
+                    <div>
+                        <label for="enthusiastic">Very Poor
+                            <input type="radio" name="enthusiastic" id="enthusiastic1" value="1" required>
+                        </label>
+                        <label for="enthusiastic">Poor
+                            <input type="radio" name="enthusiastic" id="enthusiastic2" value="2">
+                        </label>
+                        <label for="enthusiastic">Fair
+                            <input type="radio" name="enthusiastic" id="enthusiastic3" value="3">
+                        </label>
+                        <label for="enthusiastic">Good
+                            <input type="radio" name="enthusiastic" id="enthusiastic4" value="4">
+                        </label>
+                        <label for="enthusiastic">Very Good
+                            <input type="radio" name="enthusiastic" id="enthusiastic5" value="5">
+                        </label>
+                        <label for="enthusiastic">Excellent
+                            <input type="radio" name="enthusiastic" id="enthusiastic6" value="6">
+                        </label>
+                        <label for="enthusiastic" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The trainer is knowledgeable:
+                    <div>
+                        <label for="knowledgeable">Very Poor
+                            <input type="radio" name="knowledgeable" id="knowledgeable1" value="1" required>
+                        </label>
+                        <label for="knowledgeable">Poor
+                            <input type="radio" name="knowledgeable" id="knowledgeable2" value="2">
+                        </label>
+                        <label for="knowledgeable">Fair
+                            <input type="radio" name="knowledgeable" id="knowledgeable3" value="3">
+                        </label>
+                        <label for="knowledgeable">Good
+                            <input type="radio" name="knowledgeable" id="knowledgeable4" value="4">
+                        </label>
+                        <label for="knowledgeable">Very Good
+                            <input type="radio" name="knowledgeable" id="knowledgeable5" value="5">
+                        </label>
+                        <label for="knowledgeable">Excellent
+                            <input type="radio" name="knowledgeable" id="knowledgeable6" value="6" checked>
+                        </label>
+                        <label for="knowledgeable" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The trainer is well prepared:
+                    <div>
+                        <label for="prepared">Very Poor
+                            <input type="radio" name="prepared" id="prepared1" value="1" required>
+                        </label>
+                        <label for="prepared">Poor
+                            <input type="radio" name="prepared" id="prepared2" value="2">
+                        </label>
+                        <label for="prepared">Fair
+                            <input type="radio" name="prepared" id="prepared3" value="3">
+                        </label>
+                        <label for="prepared">Good
+                            <input type="radio" name="prepared" id="prepared4" value="4">
+                        </label>
+                        <label for="prepared">Very Good
+                            <input type="radio" name="prepared" id="prepared5" value="5">
+                        </label>
+                        <label for="prepared">Excellent
+                            <input type="radio" name="prepared" id="prepared6" value="6" checked>
+                        </label>
+                        <label for="prepared" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The trainer encourages participation:
+                    <div>
+                        <label for="participation">Very Poor
+                            <input type="radio" name="participation" id="participation1" value="1" required>
+                        </label>
+                        <label for="participation">Poor
+                            <input type="radio" name="participation" id="participation2" value="2">
+                        </label>
+                        <label for="participation">Fair
+                            <input type="radio" name="participation" id="participation3" value="3">
+                        </label>
+                        <label for="participation">Good
+                            <input type="radio" name="participation" id="participation4" value="4">
+                        </label>
+                        <label for="participation">Very Good
+                            <input type="radio" name="participation" id="participation5" value="5">
+                        </label>
+                        <label for="participation">Excellent
+                            <input type="radio" name="participation" id="participation6" value="6" checked>
+                        </label>
+                        <label for="participation" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The trainer communicates clearly:
+                    <div>
+                        <label for="communicates">Very Poor
+                            <input type="radio" name="communicates" id="communicates1" value="1" required>
+                        </label>
+                        <label for="communicates">Poor
+                            <input type="radio" name="communicates" id="communicates2" value="2">
+                        </label>
+                        <label for="communicates">Fair
+                            <input type="radio" name="communicates" id="communicates3" value="3">
+                        </label>
+                        <label for="communicates">Good
+                            <input type="radio" name="communicates" id="communicates4" value="4">
+                        </label>
+                        <label for="communicates">Very Good
+                            <input type="radio" name="communicates" id="communicates5" value="5">
+                        </label>
+                        <label for="communicates">Excellent
+                            <input type="radio" name="communicates" id="communicates6" value="6" checked>
+                        </label>
+                        <label for="communicates" class="error"></label>
+                    </div>
+                </li>
+                <li>
+                    <label class="block" for="trainerComments">Please add any comments:</label>
+                    <textarea name="trainerComments" id="trainerComments"></textarea>
+
+                </li>
+
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>Course Content &amp; Structure</legend>
+            <ul>
+                <li class="formitem multi">The course objectives are clearly stated:
+                    <div>
+                        <label for="objectives">Very Poor
+                            <input type="radio" name="objectives" id="objectives1" value="1" required>
+                        </label>
+                        <label for="objectives">Poor
+                            <input type="radio" name="objectives" id="objectives2" value="2">
+                        </label>
+                        <label for="objectives">Fair
+                            <input type="radio" name="objectives" id="objectives3" value="3">
+                        </label>
+                        <label for="objectives">Good
+                            <input type="radio" name="objectives" id="objectives4" value="4">
+                        </label>
+                        <label for="objectives">Very Good
+                            <input type="radio" name="objectives" id="objectives5" value="5">
+                        </label>
+                        <label for="objectives">Excellent
+                            <input type="radio" name="objectives" id="objectives6" value="6" checked>
+                        </label>
+                        <label for="objectives" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The course is well organised:
+                    <div>
+                        <label for="organised">Very Poor
+                            <input type="radio" name="organised" id="organised1" value="1" required>
+                        </label>
+                        <label for="organised">Poor
+                            <input type="radio" name="organised" id="organised2" value="2">
+                        </label>
+                        <label for="organised">Fair
+                            <input type="radio" name="organised" id="organised3" value="3">
+                        </label>
+                        <label for="organised">Good
+                            <input type="radio" name="organised" id="organised4" value="4">
+                        </label>
+                        <label for="organised">Very Good
+                            <input type="radio" name="organised" id="organised5" value="5">
+                        </label>
+                        <label for="organised">Excellent
+                            <input type="radio" name="organised" id="organised6" value="6" checked>
+                        </label>
+                        <label for="organised" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The pace of the course is appropriate:
+                    <div>
+                        <label for="pace">Very Poor
+                            <input type="radio" name="pace" id="pace1" value="1" required>
+                        </label>
+                        <label for="pace">Poor
+                            <input type="radio" name="pace" id="pace2" value="2">
+                        </label>
+                        <label for="pace">Fair
+                            <input type="radio" name="pace" id="pace3" value="3">
+                        </label>
+                        <label for="pace">Good
+                            <input type="radio" name="pace" id="pace4" value="4">
+                        </label>
+                        <label for="pace">Very Good
+                            <input type="radio" name="pace" id="pace5" value="5">
+                        </label>
+                        <label for="pace">Excellent
+                            <input type="radio" name="pace" id="pace6" value="6" checked>
+                        </label>
+                        <label for="pace" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The course activities are useful:
+                    <div>
+                        <label for="activities">Very Poor
+                            <input type="radio" name="activities" id="activities1" value="1" required>
+                        </label>
+                        <label for="activities">Poor
+                            <input type="radio" name="activities" id="activities2" value="2">
+                        </label>
+                        <label for="activities">Fair
+                            <input type="radio" name="activities" id="activities3" value="3">
+                        </label>
+                        <label for="activities">Good
+                            <input type="radio" name="activities" id="activities4" value="4">
+                        </label>
+                        <label for="activities">Very Good
+                            <input type="radio" name="activities" id="activities5" value="5">
+                        </label>
+                        <label for="activities">Excellent
+                            <input type="radio" name="activities" id="activities6" value="6" checked>
+                        </label>
+                        <label for="activities" class="error"></label>
+                    </div>
+                </li>
+                <li>
+                    <label class="block" for="trainerComments">Please add any comments:</label>
+                    <textarea name="courseComments" id="courseComments"></textarea>
+
+                </li>
+
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>Classroom &amp; Personnel</legend>
+            <ul>
+                <li class="formitem multi">I received full booking confirmation and course details prior to course commencement:
+                    <div>
+                        <label for="confirmation">Very Poor
+                            <input type="radio" name="confirmation" id="confirmation1" value="1" required>
+                        </label>
+                        <label for="confirmation">Poor
+                            <input type="radio" name="confirmation" id="confirmation2" value="2">
+                        </label>
+                        <label for="confirmation">Fair
+                            <input type="radio" name="confirmation" id="confirmation3" value="3">
+                        </label>
+                        <label for="confirmation">Good
+                            <input type="radio" name="confirmation" id="confirmation4" value="4">
+                        </label>
+                        <label for="confirmation">Very Good
+                            <input type="radio" name="confirmation" id="confirmation5" value="5">
+                        </label>
+                        <label for="confirmation">Excellent
+                            <input type="radio" name="confirmation" id="confirmation6" value="6" checked>
+                        </label>
+                        <label for="confirmation" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The classroom is comfortable:
+                    <div>
+                        <label for="classroom">Very Poor
+                            <input type="radio" name="classroom" id="classroom1" value="1" required>
+                        </label>
+                        <label for="classroom">Poor
+                            <input type="radio" name="classroom" id="classroom2" value="2">
+                        </label>
+                        <label for="classroom">Fair
+                            <input type="radio" name="classroom" id="classroom3" value="3">
+                        </label>
+                        <label for="classroom">Good
+                            <input type="radio" name="classroom" id="classroom4" value="4">
+                        </label>
+                        <label for="classroom">Very Good
+                            <input type="radio" name="classroom" id="classroom5" value="5">
+                        </label>
+                        <label for="classroom">Excellent
+                            <input type="radio" name="classroom" id="classroom6" value="6" checked>
+                        </label>
+                        <label for="classroom" class="error"></label>
+                    </div>
+                </li>
+                <li class="formitem multi">The equipment functions properly:
+                    <div>
+                        <label for="equipment">Very Poor
+                            <input type="radio" name="equipment" id="equipment1" value="1" required>
+                        </label>
+                        <label for="equipment">Poor
+                            <input type="radio" name="equipment" id="equipment2" value="2">
+                        </label>
+                        <label for="equipment">Fair
+                            <input type="radio" name="equipment" id="equipment3" value="3">
+                        </label>
+                        <label for="equipment">Good
+                            <input type="radio" name="equipment" id="equipment4" value="4">
+                        </label>
+                        <label for="equipment">Very Good
+                            <input type="radio" name="equipment" id="equipment5" value="5">
+                        </label>
+                        <label for="equipment">Excellent
+                            <input type="radio" name="equipment" id="equipment6" value="6">
+                        </label>
+                        <label for="equipment" class="error"></label>
+                    </div>
+                </li>
+                <li>
+                    <label class="block" for="trainerComments">Please add any comments:</label>
+                    <textarea name="classroomComments" id="classroomComments"></textarea>
+
+                </li>
+
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <legend>Further Details</legend>
+            <ul>
+                <li class="formitem">
+                    <label for="comments">Are there any further comments or suggestions you would like to make with regards to the training course you have attended?</label>
+                    <textarea name="comments" id="comments"></textarea>
+                </li>
+                <li class="formitem">
+                    Would you recommend YouTrain to colleagues/friends/aquaintances?
+                    <label for="recommend">Yes
+                        <input type="radio" name="recommend" value="1">
+                    </label>
+                    <label for="recommend">No
+                        <input type="radio" name="recommend" value="0">
+                    </label>
+                </li>
+
+                <li class="formitem">
+                    May we use your comments?
+                    <label for="use">Yes
+                        <input type="radio" name="use" value="1">
+                    </label>
+                    <label for="use">No
+                        <input type="radio" name="use" value="0">
+                    </label>
+                </li>
+
+                <li>
+                    <button type="submit" id="submit">Finish</button>
+                </li>
+
+
+            </ul>
+
+
+        </fieldset>
+
+
+
+
+
+
+
+    </form>
+
+
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    <script src="js/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script>
+        $(function () {
+
+            //pop today date
+            var today = new Date();
+            var y = today.getFullYear();
+            var m = ((today.getMonth() + 1) < 10) ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1);
+            var d = ((today.getDate()) < 10) ? '0' + (today.getDate()) : (today.getdate() + 1)
+            var dateStr = y + '-' + m + '-' + d;
+            $('#date').val(dateStr);
+
+
+            //jqueryui datepickers
+            $('#start,#today').datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+
+            //make it easier to select radio button by listening for click on label
+            $('label').click(function (e) {
+                if ($(this).has('input[type=radio]')) {
+                    $(this).find('input[type=radio]').attr('checked', true);
+                }
+            });
+
+
+            //when user clicks to submit eval form
+            $('#submit').click(function (e) {
+
+
+                //validate signup form on keyup and submit
+                $("#evalFrm").validate({
+                    rules: {
+
+                        email: {
+
+                            email: true
+                        }
+
+
+                    },
+                    messages: {
+                        firstname: "Please enter your first name",
+                        lastname: "Please enter your last name",
+                        company: "Please enter your company",
+                        tel: "Please enter your tel no",
+                        email: "Please enter your email",
+                        course: "Please enter the course name",
+                        trainer: "Please enter the name of your trainer",
+                        start: "Please enter the start date of the course",
+                        today: "Please enter today's date",
+                        enthusiastic: "Please select a value",
+                        knowledgeable: "Please select a value",
+                        prepared: "Please select a value",
+                        participation: "Please select a value",
+                        communicates: "Please select a value",
+                        objectives: "Please select a value",
+                        organised: "Please select a value",
+                        pace: "Please select a value",
+                        activities: "Please select a value",
+                        confirmation: "Please select a value",
+                        classroom: "Please select a value",
+                        equipment: "Please select a value"
+
+
+                    },
+                    submitHandler: function (form) {
+                        var data = {};
+                        $('input').each(function (index, element) {
+                            switch (element.type) {
+                            case 'text':
+                                data[element.name] = element.value;
+                                break;
+                            case 'email':
+                                data[element.name] = element.value;
+                                break;
+                            case 'hidden':
+                                data[element.name] = element.value;
+                                break;
+                            case 'radio':
+                                data[element.name] = $('input:radio[name="' + element.name + '"]:checked').val();
+                                break;
+                            }
+                        });
+
+
+                        $('textarea').each(function (index, element) {
+                            data[element.name] = escape(element.value);
+                        });
+
+                        $('select').each(function (index, element) {
+                            data[element.name] = escape(element.value);
+                        });
+
+                        console.log(JSON.stringify(data));
+
+                        $.ajax({
+                            url: 'php/saveEval.php',
+                            type: 'post',
+                            dataType: 'text',
+                            data: data,
+                            success: function (data) {
+                                console.log(data);
+                            },
+                            error: function (h, m, s) {
+                                console.log(m);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+</body>
+
+</html>

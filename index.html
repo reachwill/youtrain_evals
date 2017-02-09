@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Evaluation Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="js/chosen/chosen.css">
+    <style>
+        select {
+            margin: 10px 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Evaluation Dashboard</h1>
+    </header>
+
+    <!-- Start of #topNav -->
+    <nav id="topNav">
+        <ul>
+            <li>
+                <a href="#" id="trainerLink">Manage Trainer Led Evals</a>
+            </li>
+            <li>
+                <a href="#" id="apprenticeLink">Manage Apprenticeship Evals</a>
+            </li>
+            <li>
+                <a href="#" id="urlsLink">Links to Evaluation Forms</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End of #topNav -->
+
+    <!-- Start of #instructions -->
+    <div id="instructions">
+        <p>
+            This dashboard is used to manage online evaluations submitted by delegates who have attended Youtrain courses and apprenticeship programmes. The dashboard provides tools to manage the 2 different categories of evaluations - Trainer Led and Apprenticeship
+            Awards. Use the navigation above to view the relevant type of evaluations you wish to manage.
+        </p>
+    </div>
+    <!-- End of #instructions -->
+
+    <!-- Start of #instructions -->
+    <div id="urls">
+        <p>
+            These are the links to the 4 evaluation forms.
+        </p>
+        <ul>
+            <li><a href="http://localhost:8888/all/youtrain/eval/trainerled2.html" target="_blank">Trainer Led</a></li>
+            <li><a href="http://localhost:8888/all/youtrain/eval/apprentice-mid.html">Apprenticeship Mid Term</a></li>
+            <li><a href="http://localhost:8888/all/youtrain/eval/apprentice-final.html">Apprenticeship Final</a></li>
+            <li><a href="http://localhost:8888/all/youtrain/eval/client.html">Client</a></li>
+        </ul>
+    </div>
+    <!-- End of #instructions -->
+
+
+
+    <!-- Start of #apprenticeship tabbed interface -->
+    <div class="tabs" id="apprenticeship">
+        <ul>
+            <li><a href="#mid">Apprenticeship Mid</a></li>
+            <li><a href="#final">Apprenticeship Final</a></li>
+            <li><a href="#client">Client</a></li>
+
+        </ul>
+
+
+
+        <div id="mid">
+            <p>Search, manage submitted evaluations. Generate reports.</p>
+            <form id="appByAwardMidFrm">
+                <fieldset class="details">
+                    <legend>Search By Award</legend>
+                    <ul>
+                        <li class="formitem">
+                            <label for="awardMid">Award:</label>
+                            <select name="awardMid" class="chosen-select" id="awardMid"></select>
+                        </li>
+                        <li class="formitem">
+                            <label for="fromMid">From:</label>
+                            <input class="datepicker" type="text" name="fromMid" id="fromMid" required value="2016-01-01">
+                        </li>
+                        <li class="formitem">
+                            <label for="toMid">To:</label>
+                            <input class="datepicker today" type="text" name="toMid" id="toMid" required>
+                        </li>
+                        <li>
+                            <button type="submit" id="searchByAwardMidBtn">Search</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+
+            <table border="1" id="resultsByAwardMid">
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Award</th>
+                        <th>Total Eval Score</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- start chartingMid -->
+            <div id="chartingMid">
+
+
+                <div class="chartButtons">
+                    <p>
+                        Display chart based on:-
+                    </p>
+                    <button class="chartLink mid" rel="relevance">relevance</button>
+                    <button class="chartLink mid" rel="content">content</button>
+                    <button class="chartLink mid" rel="format">format</button>
+                    <button class="chartLink mid" rel="duration">duration</button>
+                    <button class="chartLink mid" rel="induction">induction</button>
+                    <button class="chartLink mid" rel="ongoing">ongoing</button>
+                    <button class="chartLink mid" rel="clarity">clarity</button>
+                    <button class="chartLink mid" rel="frequency">frequency</button>
+                    <button class="chartLink mid" rel="helpfulness">helpfulness</button>
+
+                </div>
+
+                <div id="chartHolderMid">
+                    <canvas id="myMidChart"></canvas>
+                </div>
+
+
+            </div>
+            <!-- end chartingMid -->
+        </div>
+        <!-- end #mid -->
+        <div id="final">
+            <p>Search, manage submitted evaluations. Generate reports.</p>
+            <form id="appByAwardFinalFrm">
+                <fieldset class="details">
+                    <legend>Search By Award</legend>
+                    <ul>
+                        <li class="formitem">
+                            <label for="awardFinal">Award:</label>
+                            <select name="awardFinal" class="chosen-select" id="awardFinal"></select>
+                        </li>
+                        <li class="formitem">
+                            <label for="fromFinal">From:</label>
+                            <input class="datepicker" type="text" name="fromFinal" id="fromFinal" required value="2016-01-01">
+                        </li>
+                        <li class="formitem">
+                            <label for="toFinal">To:</label>
+                            <input class="datepicker today" type="text" name="toFinal" id="toFinal" required>
+                        </li>
+                        <li>
+                            <button type="submit" id="searchByAwardFinalBtn">Search</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+
+            <table border="1" id="resultsByAwardFinal">
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Award</th>
+                        <th>Total Eval Score</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- start chartingFinal -->
+            <div id="chartingFinal">
+
+                <div class="chartButtons">
+                    <p>
+                        Display chart based on:-
+                    </p>
+                    <button class="chartLink final" rel="relevance">relevance</button>
+                    <button class="chartLink final" rel="content">content</button>
+                    <button class="chartLink final" rel="format">format</button>
+                    <button class="chartLink final" rel="duration">duration</button>
+                    <button class="chartLink final" rel="induction">induction</button>
+                    <button class="chartLink final" rel="ongoing">ongoing</button>
+                    <button class="chartLink final" rel="clarity">clarity</button>
+                    <button class="chartLink final" rel="frequency">frequency</button>
+                    <button class="chartLink final" rel="helpfulness">helpfulness</button>
+
+                </div>
+
+                <div id="chartHolderFinal">
+                    <canvas id="myFinalChart"></canvas>
+                </div>
+
+
+            </div>
+            <!-- end chartingFinal -->
+        </div>
+        <!-- end #final -->
+        <div id="client">
+            <p>Search and manage submitted evaluations from clients. Send requests to clients requesting evaluation submission. Generate reports.</p>
+        </div>
+        <!-- end #client -->
+    </div>
+    <!-- End of #apprenticeship tabbed interface -->
+
+
+
+    <!-- Start of #trainerled tabbed interface -->
+    <div class="tabs" id="trainerled">
+        <ul>
+            <li><a href="#trainer">Trainer Led</a></li>
+            <li><a href="#addCourse">Add Course to Evals</a></li>
+
+
+        </ul>
+
+        <div id="trainer">
+            <p>Search, manage submitted evaluations. Generate reports.</p>
+            <p>
+                <a href="#" id="displaySearchByCourse">Search By Course</a>
+                <a href="#" id="displaySearchByDelCo">Advanced Search</a>
+            </p>
+
+            <div id="searchByCourse">
+
+
+                <form id="trainerLedByCourseFrm">
+                    <fieldset class="details">
+                        <legend>Search By Course</legend>
+                        <ul>
+                            <li class="formitem">
+                                <label for="name">Course:</label>
+                                <select name="course" class="chosen-select" id="course"></select>
+                            </li>
+                            <li class="formitem">
+                                <label for="name">From:</label>
+                                <input class="datepicker" type="text" name="from" id="from" required value="2016-01-01">
+                            </li>
+                            <li class="formitem">
+                                <label for="name">To:</label>
+                                <input class="datepicker today" type="text" name="to" id="to" required>
+                            </li>
+                            <li>
+                                <button type="submit" id="searchByCourseBtn">Search</button>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </form>
+
+
+
+            </div>
+            <!-- END #searchByCourse-->
+
+            <div id="searchByDelCo">
+
+
+                <form id="trainerLedByDelCoFrm">
+                    <fieldset class="details">
+                        <legend>Search By Delegate or Company</legend>
+                        <ul>
+                            <li class="formitem">
+                                <label for="firstname">First Name:</label>
+                                <input type="text" name="firstname" id="firstname" required value="will">
+                                <label for="name" class="error"></label>
+                            </li>
+                            <li class="formitem">
+                                <label for="lastname">Last Name:</label>
+                                <input type="text" name="lastname" id="lastname" required value="gregory">
+                                <label for="name" class="error"></label>
+                            </li>
+                            <li class="formitem">
+                                <label for="name">Company:</label>
+                                <input type="text" name="company" id="company" required value="will LTD">
+                            </li>
+                            <li class="formitem">
+                                <label for="name">Trainer:</label>
+                                <input type="text" name="trainer" id="trainerInput" required value="trainer">
+                            </li>
+                            <li class="formitem">
+                                <label for="name">From:</label>
+                                <input class="datepicker" type="text" name="from2" id="from2" required value="2016-01-01">
+                            </li>
+                            <li class="formitem">
+                                <label for="name">To:</label>
+                                <input class="datepicker today" type="text" name="to2" id="to2" required>
+                            </li>
+                            <li class="formitem">
+                                <input type="hidden" name="date" id="date" readonly>
+                            </li>
+                            <li>
+                                <button type="submit" id="searchByDelCoBtn">Search</button>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </form>
+
+                <!-- <table border="1" id="resultsByDelCo">
+                    <thead>
+                        <tr>
+                            <th>Last Name</th>
+                            <th>First Name</th>
+                            <th>Total Eval Score</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table> -->
+
+            </div>
+            <!-- END #searchByDelCo -->
+
+
+
+            <table border="1" id="resultsByCourse">
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Course</th>
+                        <th>Total Eval Score</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- start charting -->
+            <div class="chartButtons">
+                <p>
+                    Display chart based on:-
+                </p>
+                <button class="chartLink trainer" rel="enthusiastic">enthusiastic</button>
+                <button class="chartLink trainer" rel="knowledgeable">knowledgeable</button>
+                <button class="chartLink trainer" rel="prepared">prepared</button>
+                <button class="chartLink trainer" rel="participation">participation</button>
+                <button class="chartLink trainer" rel="communicates">communicates</button>
+                <button class="chartLink trainer" rel="objectives">objectives</button>
+                <button class="chartLink trainer" rel="organised">organised</button>
+                <button class="chartLink trainer" rel="pace">pace</button>
+                <button class="chartLink trainer" rel="activities">activities</button>
+                <button class="chartLink trainer" rel="confirmation">confirmation</button>
+                <button class="chartLink trainer" rel="classroom">classroom</button>
+                <button class="chartLink trainer" rel="equipment">equipment</button>
+            </div>
+            <div id="charting">
+                <div id="chartHolder">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <!-- end charting -->
+
+
+
+
+
+        </div>
+        <div id="addCourse">
+            <p>Add courses to the evaluation database. The name you provide will appear in the delegates' evaluation forms.</p>
+            <form id="addCourseFrm">
+                <ul>
+                    <li>
+                        <label for="courseType">Select Type of Course</label>
+                        <select name="courseType" id="courseType" style="width:100%;"></select>
+                    </li>
+
+                    <li>
+                        <label for="courseName">Name of Course</label>
+                        <input type="text" name="courseName" id="courseName" />
+                    </li>
+                    <li>
+                        <button type="submit" id="addCourseBtn">Add Course to Evals</button>
+                    </li>
+                    <li style="clear:both;">
+                        ...
+                    </li>
+                </ul>
+            </form>
+
+            <p>If you need to add a new course type eg. MANAGEMENT COURSES, use the form below to add it. The new course type will then appear in the form above to assign to any new courses to be added.</p>
+            <form id="addCourseTypeFrm">
+                <ul>
+                    <li>
+                        <label for="newCourseType">Name of Course Type</label>
+                        <input type="text" name="newCourseType" id="newCourseType" />
+                    </li>
+                    <li>
+                        <button type="submit" id="addCourseTypeBtn">Add Course Type to Evals</button>
+                    </li>
+                    <li style="clear:both;">
+                        ...
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- End of #trainerled tabbed interface -->
+
+
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+    <script src="js/liveData.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- dialog for displaying eval details -->
+    <div id="evalDetailsDialog">
+        <h3>Delegate Details</h3>
+        <ul>
+            <li id="detail-firstname"><strong>First Name: </strong><span></span></li>
+            <li id="detail-lastname"><strong>Last Name: </strong><span></span></li>
+            <li id="detail-company"><strong>Company: </strong><span></span></li>
+            <li id="detail-email"><strong>Email: </strong><span></span></li>
+            <li id="detail-tel"><strong>Tel: </strong><span></span></li>
+            <li id="detail-course"><strong>Course: </strong><span></span></li>
+            <li id="detail-trainer"><strong>Trainer: </strong><span></span></li>
+            <li id="detail-start"><strong>Start Date: </strong><span></span></li>
+            <li id="detail-date"><strong>Date of Evaluation: </strong><span></span></li>
+        </ul>
+        <h3>Trainer</h3>
+        <ul>
+            <li id="detail-enthusiastic"><strong>Trainer was enthusiastic: </strong><span></span></li>
+            <li id="detail-knowledgeable"><strong>Trainer was knowledgeable: </strong><span></span></li>
+            <li id="detail-prepared"><strong>Trainer was well prepared: </strong><span></span></li>
+            <li id="detail-participation"><strong>Trainer encourages participation: </strong><span></span></li>
+            <li id="detail-communicates"><strong>Trainer communicates clearly: </strong><span></span></li>
+            <li id="detail-trainerComments"><strong>Comments: </strong><span></span></li>
+        </ul>
+        <h3>Course Content &amp; Structure</h3>
+        <ul>
+            <li id="detail-objectives"><strong>The course objectives are clearly stated: </strong><span></span></li>
+            <li id="detail-organised"><strong>The course was well organised: </strong><span></span></li>
+            <li id="detail-pace"><strong>The pace of the course was appropriate: </strong><span></span></li>
+            <li id="detail-activities"><strong>The course activities were useful: </strong><span></span></li>
+            <li id="detail-courseComments"><strong>Comments: </strong><span></span></li>
+        </ul>
+        <h3>Classroom &amp; Personnel</h3>
+        <ul>
+            <li id="detail-confirmation"><strong>I received full booking confirmation and course details prior to course commencement: </strong><span></span></li>
+            <li id="detail-classroom"><strong>The classroom was comfortable: </strong><span></span></li>
+            <li id="detail-equipment"><strong>The equipment functioned properly: </strong><span></span></li>
+            <li id="detail-classroomComments"><strong>Comments: </strong><span></span></li>
+        </ul>
+        <h3>Further Details</h3>
+        <ul>
+            <li id="detail-comments"><strong>Have you any further comments? </strong><span></span></li>
+            <li id="detail-other_courses"><strong>Are you interested in any further courses? </strong><span></span></li>
+            <li id="detail-recommend"><strong>Would you recommend this course to others? </strong><span></span></li>
+            <li id="detail-canuse"><strong>May we use your comments? </strong><span></span></li>
+        </ul>
+    </div>
+
+    <!-- dialog for displaying eval details -->
+    <div id="apprenticeDetailsDialog">
+        <h3>Delegate Details</h3>
+        <ul>
+            <li id="detail-app-firstname"><strong>First Name: </strong><span></span></li>
+            <li id="detail-app-lastname"><strong>Last Name: </strong><span></span></li>
+            <li id="detail-app-company"><strong>Company: </strong><span></span></li>
+            <li id="detail-app-email"><strong>Email: </strong><span></span></li>
+            <li id="detail-app-tel"><strong>Tel: </strong><span></span></li>
+            <li id="detail-app-course"><strong>Qualification: </strong><span></span></li>
+            <li id="detail-app-trainer"><strong>Training Consultant: </strong><span></span></li>
+            <li id="detail-app-start"><strong>Start Date: </strong><span></span></li>
+            <li id="detail-app-date"><strong>Date of Evaluation: </strong><span></span></li>
+        </ul>
+        <h3>Your Qualification</h3>
+        <ul>
+            <li id="detail-app-relevance"><strong>Award relevance to your job: </strong><span></span></li>
+            <li id="detail-app-content"><strong>Award content: </strong><span></span></li>
+            <li id="detail-app-format"><strong>Award format: </strong><span></span></li>
+            <li id="detail-app-duration"><strong>Award duration: </strong><span></span></li>
+            <li id="detail-app-awardComments"><strong>Comments: </strong><span></span></li>
+        </ul>
+        <h3>Your Training Consultant</h3>
+        <ul>
+            <li id="detail-app-induction"><strong>Support - Induction of award: </strong><span></span></li>
+            <li id="detail-app-ongoing"><strong>Support - ongoing: </strong><span></span></li>
+            <li id="detail-app-clarity"><strong>Clarity of explanations: </strong><span></span></li>
+            <li id="detail-app-frequency"><strong>Frequency of contact: </strong><span></span></li>
+            <li id="detail-app-helpfulness"><strong>Helpfulness and guidance: </strong><span></span></li>
+            <li id="detail-app-trainerComments"><strong>Comments: </strong><span></span></li>
+        </ul>
+
+        <h3>Further Details</h3>
+        <ul>
+            <li id="detail-app-impact"><strong>Has the award had a positive impact on your working practices to date? </strong><span></span></li>
+            <li id="detail-app-impactComments"><strong>Comments:</strong><span></span></li>
+
+            <li id="detail-app-improvements"><strong>Are there any improvements to the assessment process which we could improve on? </strong><span></span></li>
+            <li id="detail-app-improvementsComments"><strong>Comments:</strong><span></span></li>
+
+            <li id="detail-app-recommend"><strong>Would you recommend this course to others? </strong><span></span></li>
+            <li id="detail-app-canuse"><strong>May we use your comments? </strong><span></span></li>
+        </ul>
+    </div>
+
+    <div id="noresults">
+      <h2>Sorry no results found on that search. Please try again.</h2>
+    </div>
+
+
+
+</body>
+
+</html>

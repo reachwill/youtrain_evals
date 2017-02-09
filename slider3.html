@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>rangeSlider.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="js/slider/dist/rangeSlider.css">
+    <!--<link rel="stylesheet" href="rangeSlider-flat.css">-->
+    <style>
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html {
+            color: #404040;
+            font-family: Helvetica, arial, sans-serif;
+        }
+
+        body {
+            /*padding: 50px 20px;*/
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        output {
+            /*display: inline-block;*/
+            font-size: 30px;
+            font-weight: bold;
+            /*text-align: center;*/
+            /*margin: 30px 0;*/
+            /*width: 100%;*/
+            position: absolute;
+            top:10px;
+            right:10px;
+            color:green;
+        }
+        div.question{
+          border: 1px solid #ccc;
+          margin-top: 10px;
+          padding: 10px;
+          position: relative;
+          height: 125px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="question">
+    <h2>Question</h2>
+    <output></output>
+    <input type="range" min="1" max="6" step="1" data-rangeSlider>
+</div>
+
+<div class="question">
+    <h2>Question</h2>
+    <input type="range" min="1" max="6" step="1" data-rangeSlider>
+    <output></output>
+</div>
+
+<div class="question">
+    <h2>Question</h2>
+    <input type="range" min="1" max="6" step="1" data-rangeSlider>
+    <output></output>
+</div>
+
+<div class="question">
+    <h2>Question</h2>
+    <input type="range" min="1" max="6" step="1" data-rangeSlider>
+    <output></output>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script src="js/slider/dist/rangeSlider.js"></script>
+<script>
+    (function () {
+
+        var selector = '[data-rangeSlider]',
+                elements = document.querySelectorAll(selector);
+
+        // Example functionality to demonstrate a value feedback
+        function valueOutput(element) {
+            var value = element.value,
+                    output = element.parentNode.getElementsByTagName('output')[0];
+            output.innerHTML = value;
+        }
+
+        for (var i = elements.length - 1; i >= 0; i--) {
+            valueOutput(elements[i]);
+        }
+
+        Array.prototype.slice.call(document.querySelectorAll('input[type="range"]')).forEach(function (el) {
+            el.addEventListener('input', function (e) {
+                valueOutput(e.target);
+            }, false);
+        });
+
+
+
+
+        // Basic rangeSlider initialization
+        rangeSlider.create(elements, {
+
+            // Callback function
+            onInit: function () {
+            },
+
+            // Callback function
+            onSlideStart: function (value, percent, position) {
+                //console.info('onSlideStart', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+            },
+
+            // Callback function
+            onSlide: function (value, percent, position) {
+                //console.log('onSlide', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+            },
+
+            // Callback function
+            onSlideEnd: function (value, percent, position) {
+                //console.warn('onSlideEnd', 'value: ' + value, 'percent: ' + percent, 'position: ' + position);
+            }
+        });
+
+    })();
+</script>
+</body>
+</html>

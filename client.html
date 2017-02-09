@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apprenticeship/Diploma/Award Client Evaluation Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="js/slider/dist/rangeSlider.css">
+    <link rel="stylesheet" href="js/chosen/chosen.css">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Apprenticeship/Diploma/Award Mid Evaluation Form</h1>
+        <h2>All details you provide will remain strictly confidential and will only be used to enable us to enhance everyone's experience in Youtrain.</h2>
+    </header>
+
+    <!--
+    NOTE: The client server logic requires all form field names to exactly match the database field names.
+    If you need to add a new field to the evaluation form see instructions located in php/saveApprenticeshipEval.php
+    -->
+
+    <form id="evalFrm">
+
+        <fieldset class="details">
+            <legend>Your Details</legend>
+            <ul>
+                <li class="formitem">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" name="firstname" id="firstname" required value="Alan">
+
+                </li>
+                <li class="formitem">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" name="lastname" id="lastname" required value="Sugar">
+
+                </li>
+                <li class="formitem">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="titleInput" required value="MD">
+
+                </li>
+                <li class="formitem">
+                    <label for="company">Company:</label>
+                    <input type="text" name="company" id="company" required value="Amstrad">
+
+                </li>
+                <li class="formitem">
+                    <label for="tel">Contact No:</label>
+                    <input type="text" name="tel" id="tel" required value="03338838383">
+
+                </li>
+                <li class="formitem">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" required value="alan@amstrad.com">
+
+                </li>
+                <li class="formitem">
+                    <label for="date">Date:</label>
+                    <input type="text" name="date" id="date" required>
+
+                </li>
+
+
+                <li class="formitem">
+
+                    <input type="hidden" name="dateSubmitted" id="dateSubmitted" readonly>
+
+                </li>
+            </ul>
+        </fieldset>
+
+        <h2>Thinking of your recent experiences of working with YouTrain, please provide answers to the following questions regarding Modern Apprenticeships (MAs)/Diplomas.</h2>
+
+        <fieldset class="client-feedback">
+            <legend>Your Feedback</legend>
+            <ul>
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>Was the programme explained to all parties?
+                                <br><span class="error"></span></p>
+                            <input id="explainedYes" type="radio" name="explained" value="yes">
+                            <label for="explainedYes">Yes</label>
+                            <input id="explainedNo" type="radio" name="explained" value="no">
+                            <label for="explainedNo">No</label>
+                        </div>
+                        <p>Please add comments</p>
+                        <textarea id="explainedComments" name="explainedComments"></textarea>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>Are you happy with the level of communication you have received from YouTrain, including regular feedback on employee progression?
+                                <br><span class="error"></span></p>
+                            <input id="communicationYes" type="radio" name="communication" value="yes">
+                            <label for="communicationYes">Yes</label>
+                            <input id="communicationNo" type="radio" name="communication" value="no">
+                            <label for="communicationNo">No</label>
+                        </div>
+                        <p>Please add comments</p>
+                        <textarea id="communicationComments" name="communicationComments"></textarea>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>Has the progression of Apprenticeship/Diploma by employees(s) within your organisation improved working practices and/or efficiency?
+                                <br><span class="error"></span></p>
+                            <input id="progressionYes" type="radio" name="progression" value="yes">
+                            <label for="progressionYes">Yes</label>
+                            <input id="progressionNo" type="radio" name="progression" value="no">
+                            <label for="progressionNo">No</label>
+                        </div>
+                        <p>Please add comments</p>
+                        <textarea id="progressionComments" name="progressionComments"></textarea>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>Do you feel the duration of the Apprenticeship/Diploma is appropriate?
+                                <br><span class="error"></span></p>
+                            <input id="durationYes" type="radio" name="duration" value="yes">
+                            <label for="durationYes">Yes</label>
+                            <input id="durationNo" type="radio" name="duration" value="no">
+                            <label for="durationNo">No</label>
+                        </div>
+                        <p>Please add comments</p>
+                        <textarea id="durationComments" name="durationComments"></textarea>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>Are you happy with the quality of training delivery and support provided by YouTrain?
+                                <br><span class="error"></span></p>
+                            <input id="qualityYes" type="radio" name="quality" value="yes">
+                            <label for="qualityYes">Yes</label>
+                            <input id="qualityNo" type="radio" name="quality" value="no">
+                            <label for="qualityNo">No</label>
+                        </div>
+                        <p>Please add comments</p>
+                        <textarea id="qualityComments" name="qualityComments"></textarea>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>Do you feel the YouTrain training consultant is highly experienced and knowledgeable in the areas in which you are providing training to your employee(s)?
+                                <br><span class="error"></span></p>
+                            <input id="experiencedYes" type="radio" name="experienced" value="yes">
+                            <label for="experiencedYes">Yes</label>
+                            <input id="experiencedNo" type="radio" name="experienced" value="no">
+                            <label for="experiencedNo">No</label>
+                        </div>
+                        <p>Please add comments</p>
+                        <textarea id="experiencedComments" name="experiencedComments"></textarea>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>In addition to the Apprenticeship/Diploma itself, we offer your staff the opportunity to attend additional Microsoft training courses. Has your company utilised this?
+                                <br><span class="error"></span></p>
+                            <input id="trainingYes" type="radio" name="training" value="yes">
+                            <label for="trainingYes">Yes</label>
+                            <input id="trainingNo" type="radio" name="training" value="no">
+                            <label for="trainingNo">No</label>
+                        </div>
+                        <p>Please add comments</p>
+                        <textarea id="trainingComments" name="trainingComments"></textarea>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>If your team has not booked the additional training courses, when do they plan to undertake this?
+                                <br><span class="error"></span></p>
+                            <input id="undertake0-3" type="radio" name="undertake" value="0-3">
+                            <label for="undertake0-3">0-3 months</label>
+                            <input id="undertake3-6" type="radio" name="undertake" value="3-6">
+                            <label for="undertake3-6">3-6 months</label>
+                            <input id="undertake6-9" type="radio" name="undertake" value="6-9">
+                            <label for="undertake6-9">6-9 months</label>
+                            <input id="undertake9-12" type="radio" name="undertake" value="9-12">
+                            <label for="undertake9-12">9-12 months</label>
+                            <input id="undertakeNo" type="radio" name="undertake" value="no">
+                            <label for="undertakeNo">No plans to undertake</label>
+                        </div>
+
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="question">
+                        <p>Are any of the following YouTrain services of interest to your company in the future?
+                            <br><span class="error"></span></p>
+                        <div class="checkbox">
+                            <input id="msIT" type="checkbox" name="msIT" value="yes">
+                            <label for="msIT">Microsoft based - IT Apprenticeship</label>
+                            <br>
+                            <input id="ciscoIT" type="checkbox" name="ciscoIT" value="yes">
+                            <label for="ciscoIT">Cisco based - IT Apprenticeship</label>
+                            <br>
+                            <input id="webApp" type="checkbox" name="webApp" value="yes">
+                            <label for="webApp">Web Development Apprenticeship</label>
+                            <br>
+                            <input id="bizAdmin" type="checkbox" name="bizAdmin" value="yes">
+                            <label for="bizAdmin">Business and Administration Apprenticeship</label>
+                            <br>
+                            <input id="bizMan" type="checkbox" name="bizMan" value="yes">
+                            <label for="bizMan">Business Management Training</label>
+                            <br>
+                            <input id="msTech" type="checkbox" name="msTech" value="yes">
+                            <label for="msTech">Microsoft Technical Training Courses</label>
+                            <br>
+                            <input id="msEnd" type="checkbox" name="msEnd" value="yes">
+                            <label for="msEnd">Microsoft End User Courses</label>
+                            <br>
+                            <input id="ciscoTech" type="checkbox" name="ciscoTech" value="yes">
+                            <label for="ciscoTech">Cisco Technical Training Courses</label>
+                            <br>
+                            <input id="webTrain" type="checkbox" name="webTrain" value="yes">
+                            <label for="webTrain">Web Development Training</label>
+                            <br>
+                            <input id="msVouchers" type="checkbox" name="msVouchers" value="yes">
+                            <label for="msVouchers">Microsoft Software Assurance Technical Training Vouchers - Training</label>
+                            <br>
+                            <input id="exam" type="checkbox" name="exam" value="yes">
+                            <label for="exam">Prometric, Certiport and Pearson Vue Examination Centre</label>
+                            <br>
+                            <input id="recruit" type="checkbox" name="recruit" value="yes">
+                            <label for="recruit">Recruitment services through our JobTrain division</label>
+                            <br>
+                            <input id="design" type="checkbox" name="design" value="yes">
+                            <label for="design">Digital graphic design services through our Due North division</label>
+                            <br>
+                        </div>
+
+                    </div>
+                </li>
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>Would you recommend YouTrain to colleagues/friends/acquaintances?
+                                <br><span class="error"></span></p>
+                            <input id="recommendYes" type="radio" name="recommend" value="yes">
+                            <label for="recommendYes">Yes</label>
+                            <input id="recommendNo" type="radio" name="recommend" value="no">
+                            <label for="recommendNo">No</label>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="question">
+                        <div class="radio client-radio">
+                            <p>May we use your comments?
+                                <br><span class="error"></span></p>
+                            <input id="useYes" type="radio" name="canUse" value="yes">
+                            <label for="useYes">Yes</label>
+                            <input id="useNo" type="radio" name="canUse" value="no">
+                            <label for="useNo">No</label>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li>
+                    <button type="submit" id="submit">Finish</button>
+                </li>
+
+
+            </ul>
+
+
+        </fieldset>
+
+    </form>
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+
+
+    <script>
+        $(function() {
+
+
+
+            //function to extract URL params
+            function getParameterByName(name, url) {
+                if (!url) {
+                    url = window.location.href;
+                }
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+
+            //DIALOG **********************************************************//
+            $('#dialog').dialog({
+                modal: true,
+                autoOpen: false,
+                title: 'Thank you!'
+            });
+            //END DIALOG **********************************************************//
+
+
+            //GET AWARDS LOGIC ********************************************************
+            function getAwards() {
+                $.ajax({
+                    url: 'php/getAwards.php',
+                    type: 'get',
+                    dataType: 'json',
+
+                    success: function(data) {
+                        //start adding elements to the #course select menu
+                        $('#award').append('<option value="">Select your award...</option>');
+                        var numAwards = data.length;
+                        for (var i = 0; i < numAwards; i++) {
+                            var str = '<option value="' + data[i].id + '">' + data[i].award_title + '</option>'
+                            $('#award').append(str);
+                        }
+
+                    },
+                    error: function(x, m, s) {
+                        console.log(s)
+                    }
+                });
+            }
+            getAwards();
+            //END GET AWARDS LOGIC ********************************************************
+
+
+
+
+
+
+            //populate today's date into #date hidden form field
+            var today = new Date();
+            var y = today.getFullYear();
+            var m = ((today.getMonth() + 1) < 10) ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1);
+            var d = ((today.getDate()) < 10) ? '0' + (today.getDate()) : (today.getDate() + 1)
+            var dateStr = y + '-' + m + '-' + d;
+            $('#dateSubmitted,#date').val(dateStr);
+
+
+            //jqueryui datepickers
+            $('#date').datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+
+
+            //hides error message if it has been displayed via validate submit handler
+            $('.client-radio input').click(function() {
+                if (!$(this).parent().find('.error').html('')) {
+                    $(this).parent().find('.error').html('&nbsp;');
+                }
+            });
+
+            $('#evalFrm').validate({
+                submitHandler: function(form) {
+                    //e.preventDefault();
+                    var ready = true;
+                    $('.client-radio input').each(function() {
+                        if ($('input[name=' + $(this).attr('name') + ']:checked').val() == undefined) {
+                            $(this).parent().find('.error').html('Please select an answer');
+                            ready = false;
+                        } else {
+                            $(this).parent().find('.error').html('&nbsp;');
+                        }
+                    });
+                    if (ready) {
+                        var data = {};
+                        // loop thru all inouts adding values to data object
+                        $('input').each(function(index, element) {
+                            switch (element.type) {
+                                case 'text':
+                                    data[element.name] = element.value;
+                                    break;
+                                case 'checkbox':
+                                    if ($(this).is(':checked')) {
+                                        data[element.name] = element.value;
+                                    }
+
+                                    break;
+                                case 'email':
+                                    data[element.name] = element.value;
+                                    break;
+                                case 'hidden':
+                                    data[element.name] = element.value;
+                                    break;
+                                case 'radio':
+                                    data[element.name] = $('input:radio[name="' + element.name + '"]:checked').val();
+                                    if (data[element.name] == undefined) {
+                                        data[element.name] = 0;
+                                    }
+                                    break;
+                                case 'range':
+                                    data[element.name] = element.value;
+                                    break;
+                            }
+                        });
+                        //when looping thru textareas and select we need to escape in case of special chars which cause syntax error in the JSON
+                        $('textarea').each(function(index, element) {
+                            data[element.name] = escape(element.value);
+                        });
+
+                        $.ajax({
+                            url: 'php/saveClientEval.php',
+                            type: 'post',
+                            dataType: 'text',
+                            data: data,
+                            success: function(data) {
+                                console.log(data)
+                                    //$('#dialog').dialog('open');
+                            },
+                            error: function(h, m, s) {
+                                //console.log(m);
+                            }
+                        });
+                        return;
+                    }
+                }
+            });
+            //when user clicks to submit eval form
+            // $('#submit').click(function(e) {
+            //
+            // });
+
+        });
+    </script>
+
+
+    <!--
+    this div acts as the dialog box displayed at the end of the submission process saying thanks.
+    It is defined as a jQUeryUI dialog box in the javascript code
+    -->
+    <div id="dialog">
+        <p>
+            Thank you for completing the evaluation. We appreciate your time in completing this evaluation.
+        </p>
+    </div>
+
+
+</body>
+
+</html>

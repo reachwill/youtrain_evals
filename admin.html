@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Evaluation Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css">
+</head>
+
+<body>
+    <h1>Evaluation Admin Dashboard</h1>
+    <select name="evaltype" id="evaltype">
+        <option value="default">Select an Evaluation Type</option>
+        <option value="evals">Trainer Led Evaluations</option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+    </select>
+
+    <section id="evals">
+        <ul>
+            <li class="formitem">
+                <select name="course" id="course1" class="courselist"></select>
+            </li>
+            <li class="formitem">
+                <label for="startdate">Start Date:</label>
+                <input type="text" class="datefld" name="startdate" id="startdate1">
+                <label for="enddate">End Date:</label>
+                <input type="text" class="datefld" name="enddate" id="enddate1">
+            </li>
+
+            <li class="formitem">
+                <label for="firstname">First Name:</label>
+                <input type="text" name="firstname" id="firstname1">
+            </li>
+            <li class="formitem">
+                <label for="lastname">Last Name:</label>
+                <input type="text" name="lastname" id="lastname1">
+            </li>
+            <li>
+                <button type="submit" id="trainerLedSubmit">Search</button>
+            </li>
+        </ul>
+    </section>
+
+
+
+
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    <script src="js/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script>
+        $(function () {
+
+            $('#evals').hide(); //hide all sections until a eval type is picked
+
+            //set up jqueryui datepickers
+            $('.datefld').datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+
+            $('#trainerLedSubmit').click(function () {
+                var json = {
+                    course: $('#course1').val(),
+                    startdate: $('#startdate1').val(),
+                    enddate: $('#enddate1').val(),
+                    firstname: $('#firstname1').val(),
+                    lastname: $('#lastname1').val()
+                }
+                Communicator.getTrainerLedEvals(json);
+            });
+
+            $('#evaltype').change(function (e) {
+                switch ($(this).val()) {
+                case 'evals':
+                    Communicator.getTrainerLedCourseList('evals');
+                    break;
+                }
+
+            });
+        });
+
+        var Communicator = {
+            getTrainerLedCourseList: function (target) {
+                $.ajax({
+                    url: 'php/getTrainerLedCourseList.php',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        $('section').hide();
+                        var numCourses = data.length;
+                        for (var i = 0; i < numCourses; i++) {
+                            $('#' + target).find('.courselist').append('<option>' + data[i].course + '</option>');
+                        }
+                        $('#' + target).fadeIn();
+                    },
+                    error: function (h, m, s) {
+                        console.log(m);
+                    }
+                });
+            },
+            getTrainerLedEvals: function (json) {
+
+                //$('.error').hide();
+                if ($('#startDate').val() != '' && $('#endDate').val() != '') {
+                    window.open('php/PHPExcel_1.8.0_doc/Examples/customer-download-xls.php?course=' + json.course + '&startdate=' + json.startdate + '&enddate=' + json.enddate + '&firstname=' + json.firstname + '&lastname=' + json.lastname, '_blank');
+                } else {
+                    //$('.error').fadeIn();
+                }
+
+
+
+                //                $.ajax({
+                //                    url: 'php/getTrainerLedEvals.php',
+                //                    type: 'post',
+                //                    dataType: 'json',
+                //                    data: json,
+                //                    success: function (data) {
+                //
+                //                    },
+                //                    error: function (h, m, s) {
+                //                        console.log(m);
+                //                    }
+                //                });
+            }
+
+        }
+    </script>
+</body>
+
+</html>

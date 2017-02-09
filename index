@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Evaluation Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="js/chosen/chosen.css">
+    <style>
+        select {
+            margin: 10px 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Evaluation Dashboard</h1>
+    </header>
+
+    <!-- Start of #topNav -->
+    <nav id="topNav">
+        <ul>
+            <li>
+                <a href="#" id="trainerLink">Manage Trainer Led Evals</a>
+            </li>
+            <li>
+                <a href="#" id="apprenticeLink">Manage Apprenticeship Evals</a>
+            </li>
+            <li>
+                <a href="#" id="urlsLink">Links to Evaluation Forms</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End of #topNav -->
+
+    <!-- Start of #instructions -->
+    <div id="instructions">
+        <p>
+            This dashboard is used to manage online evaluations submitted by delegates who have attended Youtrain courses and apprenticeship programmes. The dashboard provides tools to manage the 2 different categories of evaluations - Trainer Led and Apprenticeship
+            Awards. Use the navigation above to view the relevant type of evaluations you wish to manage.
+        </p>
+    </div>
+    <!-- End of #instructions -->
+
+    <!-- Start of #instructions -->
+    <div id="urls">
+        <p>
+            These are the links to the 4 evaluation forms.
+        </p>
+        <ul>
+            <li><a href="http://localhost:8888/all/youtrain/eval/trainerled2.html" target="_blank">Trainer Led</a></li>
+            <li><a href="http://localhost:8888/all/youtrain/eval/apprentice-mid.html">Apprenticeship Mid Term</a></li>
+            <li><a href="http://localhost:8888/all/youtrain/eval/apprentice-final.html">Apprenticeship Final</a></li>
+            <li><a href="" onclick="alert('Evaluation to be deployed')">Client</a></li>
+        </ul>
+    </div>
+    <!-- End of #instructions -->
+
+
+
+    <!-- Start of #apprenticeship tabbed interface -->
+    <div class="tabs" id="apprenticeship">
+        <ul>
+            <li><a href="#mid">Apprenticeship Mid</a></li>
+            <li><a href="#final">Apprenticeship Final</a></li>
+            <li><a href="#client">Client</a></li>
+
+        </ul>
+
+
+
+        <div id="mid">
+            <p>Search and manage submitted evaluations for mid term apprenticeships. Send requests to apprentices requesting evaluation submission. Generate reports.</p>
+        </div>
+        <div id="final">
+            <p>Search and manage submitted evaluations for completed apprenticeships. Send requests to apprentices requesting evaluation submission. Generate reports.</p>
+        </div>
+        <div id="client">
+            <p>Search and manage submitted evaluations from clients. Send requests to clients requesting evaluation submission. Generate reports.</p>
+        </div>
+    </div>
+    <!-- End of #apprenticeship tabbed interface -->
+
+
+
+    <!-- Start of #trainerled tabbed interface -->
+    <div class="tabs" id="trainerled">
+        <ul>
+            <li><a href="#trainer">Trainer Led</a></li>
+            <li><a href="#addCourse">Add Course to Evals</a></li>
+
+
+        </ul>
+
+        <div id="trainer">
+            <p>Search, manage submitted evaluations. Generate reports.</p>
+            <form id="trainerLedByCourseFrm">
+                <fieldset class="details">
+                    <legend>Search By Course</legend>
+                    <ul>
+                        <li class="formitem">
+                            <label for="name">Course:</label>
+                            <select name="course" class="chosen-select" id="course"></select>
+                        </li>
+                        <li class="formitem">
+                            <label for="name">From:</label>
+                            <input class="datepicker" type="text" name="from" id="from" required value="2016-01-01">
+                        </li>
+                        <li class="formitem">
+                            <label for="name">To:</label>
+                            <input class="datepicker" type="text" name="to" id="to" required value="2016-01-01">
+                        </li>
+                        <li>
+                            <button type="submit" id="searchByCourseBtn">Search</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+
+            <table border="1" id="resultsByCourse">
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Total Eval Score</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+
+            <div id="charting">
+
+
+                <p>
+                    Display chart based on:-
+                </p>
+                <a href="#" class="chartLink" rel="enthusiastic">enthusiastic</a>
+                <a href="#" class="chartLink" rel="knowledgeable">knowledgeable</a>
+                <a href="#" class="chartLink" rel="prepared">prepared</a>
+                <a href="#" class="chartLink" rel="participation">participation</a>
+                <a href="#" class="chartLink" rel="communicates">communicates</a>
+                <a href="#" class="chartLink" rel="objectives">objectives</a>
+                <a href="#" class="chartLink" rel="organised">organised</a>
+                <a href="#" class="chartLink" rel="pace">pace</a>
+                <a href="#" class="chartLink" rel="activities">activities</a>
+                <a href="#" class="chartLink" rel="confirmation">confirmation</a>
+                <a href="#" class="chartLink" rel="classroom">classroom</a>
+                <a href="#" class="chartLink" rel="equipment">equipment</a>
+
+
+                <div style="width:50%;height:50%;margin:auto;" id="chartHolder">
+                  <canvas id="myChart" ></canvas>
+                </div>
+
+
+            </div>
+
+
+
+
+            <form id="trainerLedByDelCoFrm">
+                <fieldset class="details">
+                    <legend>Search By Delegate or Company</legend>
+                    <ul>
+                        <li class="formitem">
+                            <label for="firstname">First Name:</label>
+                            <input type="text" name="firstname" id="firstname" required value="will">
+                            <label for="name" class="error"></label>
+                        </li>
+                        <li class="formitem">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" name="lastname" id="lastname" required value="gregory">
+                            <label for="name" class="error"></label>
+                        </li>
+                        <li class="formitem">
+                            <label for="name">Company:</label>
+                            <input type="text" name="company" id="company" required value="will LTD">
+                        </li>
+                        <li class="formitem">
+                            <label for="name">Trainer:</label>
+                            <input type="text" name="trainer" id="trainer" required value="trainer">
+                        </li>
+                        <li class="formitem">
+                            <label for="name">From:</label>
+                            <input class="datepicker" type="text" name="from2" id="from2" required value="2016-01-01">
+                        </li>
+                        <li class="formitem">
+                            <label for="name">To:</label>
+                            <input class="datepicker" type="text" name="to2" id="to2" required value="2016-01-01">
+                        </li>
+                        <li class="formitem">
+                            <input type="hidden" name="date" id="date" readonly value="2016-02-01">
+                        </li>
+                        <li>
+                            <button type="submit" id="searchByDelCoBtn">Search</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+
+            <table border="1" id="resultsByDelCo">
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Total Eval Score</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+
+        </div>
+        <div id="addCourse">
+            <p>Add courses to the evaluation database. The name you provide will appear in the delegates' evaluation forms.</p>
+            <form id="addCourseFrm">
+                <ul>
+                    <li>
+                        <label for="courseType">Select Type of Course</label>
+                        <select name="courseType" id="courseType" style="width:100%;"></select>
+                    </li>
+
+                    <li>
+                        <label for="courseName">Name of Course</label>
+                        <input type="text" name="courseName" id="courseName" />
+                    </li>
+                    <li>
+                        <button type="submit" id="addCourseBtn">Add Course to Evals</button>
+                    </li>
+                    <li style="clear:both;">
+                        ...
+                    </li>
+                </ul>
+            </form>
+
+            <p>If you need to add a new course type eg. MANAGEMENT COURSES, use the form below to add it. The new course type will then appear in the form above to assign to any new courses to be added.</p>
+            <form id="addCourseTypeFrm">
+                <ul>
+                    <li>
+                        <label for="newCourseType">Name of Course Type</label>
+                        <input type="text" name="newCourseType" id="newCourseType" />
+                    </li>
+                    <li>
+                        <button type="submit" id="addCourseTypeBtn">Add Course Type to Evals</button>
+                    </li>
+                    <li style="clear:both;">
+                        ...
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- End of #trainerled tabbed interface -->
+
+
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+    <script>
+        //declare object to store data to be displayed in charts based on latest search results
+        var liveData = {}
+
+        var preparedData = {
+            labels: [
+                "Very Poor",
+                "Poor",
+                "Fair",
+                "Good",
+                "Very Good",
+                "Excellent"
+            ],
+            datasets: [{
+                data: [0, 0, 0, 1, 2, 1],
+                backgroundColor: [
+                    "#ff0000",
+                    "#0000ff",
+                    "#99583D",
+                    "#CC4A14",
+                    "#40FF40",
+                    "#FFFC19"
+                ]
+            }]
+        };
+
+        $(function() {
+
+
+            //CHARTING LOGIC ***********************************************************
+
+            $('#charting').hide();
+
+            $('.chartLink').click(function(e) {
+                e.preventDefault();
+                var raw = [];
+                $.each(liveData[$(this).attr('rel')], function(key, value) {
+                    console.log(key + ": " + value);
+                    raw.push(value);
+                });
+                preparedData.datasets[0].data = raw;
+                // console.log(liveData[$(this).attr('rel')]);
+                // console.log(preparedData.datasets[0].data);
+                buildPieChart(preparedData);
+                $('.chartLink').each(function(){
+                  $(this).removeClass('selected');
+                });
+                $(this).addClass('selected');
+            });
+
+            function resetLiveData() {
+                liveData = {
+                    enthusiastic: {
+                        "1": 0,
+                        "2": 0,
+                        "3": 0,
+                        "4": 0,
+                        "5": 0,
+                        "6": 0
+                    },
+                    knowledgeable: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    prepared: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    participation: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    communicates: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    objectives: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    organised: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    pace: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    activities: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    confirmation: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    classroom: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    },
+                    equipment: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0,
+                        6: 0
+                    }
+                }
+            }
+
+            function buildPieChart(preparedData) {
+              $('#chartHolder').html('').html('<canvas id="myChart" ></canvas>');
+                var ctx = document.getElementById("myChart");
+                var myPieChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: preparedData,
+                    responsive:true
+                });
+
+            }
+
+
+
+            //buildPieChart(preparedData);
+
+
+            //END CHARTING LOGIC ***********************************************************
+
+
+
+            // jQueryUI configuration **************************************************************//
+            $('.datepicker').datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+            $('.datepicker').datepicker("setDate", new Date());
+
+            $('#from').val('2013-01-01');
+
+            $('.tabs').tabs({
+                //activate: function(event, ui) {}
+            });
+
+            $('#evalDetailsDialog').dialog({
+                modal: true,
+                autoOpen: false,
+                title: 'Evaluation',
+                width: '90%'
+            });
+            // END jQueryUI configuration **************************************************************//
+
+            $('.tabs,#urls').hide();
+            $('#trainerled').fadeIn();
+            $('#trainerLink').click(function(e) {
+                e.preventDefault();
+                $('#trainerled').fadeIn();
+                $('#apprenticeship,#urls').hide();
+
+            });
+            $('#apprenticeLink').click(function(e) {
+                e.preventDefault();
+                $('#trainerled,#urls').hide();
+                $('#apprenticeship').fadeIn();
+            });
+            $('#urlsLink').click(function(e) {
+                e.preventDefault();
+                $('#trainerled,#apprenticeship').hide();
+                $('#urls').fadeIn();
+            });
+
+
+            //CHOSEN SELECTOR SETTINGS **********************************************************//
+            var config = {
+                    '.chosen-select': {},
+                    '.chosen-select-deselect': {
+                        allow_single_deselect: true
+                    },
+                    '.chosen-select-no-single': {
+                        disable_search_threshold: 10
+                    },
+                    '.chosen-select-no-results': {
+                        no_results_text: 'Oops, nothing found!'
+                    },
+                    '.chosen-select-width': {
+                        width: "95%"
+                    }
+                }
+                //END CHOSEN SELECTOR SETTINGS **********************************************************//
+
+            //hide all tables by default when page loads
+            $('table').hide();
+
+
+
+            //VIEW EVAL DETAILS LOGIC*****************************************************************//
+            //dynamic event handler assigned to all <a class="details"></a> links found in results tables
+            $('table').on('click', '.details', function(e) {
+                e.preventDefault();
+                //grab the eval id
+                var id = $(this).data('id');
+                // go get the eval details
+                getEval(id);
+            });
+
+            // function to send AJAX request for an individual eval
+            function getEval(id) {
+                data = {
+                    id: id
+                };
+                $.ajax({
+                    url: 'php/getEval.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data: data,
+                    success: function(data) {
+                        displayEval(data)
+                    },
+                    error: function(x, m, s) {
+                        console.log(s)
+                    }
+                });
+            }
+
+            // function to display eval details in evalDetailsDialog
+            function displayEval(data) {
+
+                //$('#evalDetailsDialog > ul').html('');
+                $.each(data[0], function(key, value) {
+
+                    $('#detail-' + key).find('span').text(unescape(value));
+                    //$('#evalDetailsDialog > ul').append('<li id="detail-'+key+'"><strong>'+key+': </strong><span>'+unescape(value)+'</span></li>')
+                });
+
+
+                $('#evalDetailsDialog').dialog('open');
+            }
+
+
+            //END VIEW EVAL DETAILS LOGIC*****************************************************************//
+
+
+            //GET TRAINER LED EVALS LOGIC*****************************************************************//
+            // listen for user clicking form submit buttons
+            $('#searchByDelCoBtn,#searchByCourseBtn').click(function(e) {
+                e.preventDefault();
+                getTrainerLedEvals($(this).attr('id'))
+            });
+
+            function getTrainerLedEvals(buttClicked) {
+                var searchType;
+                //check which button was clicked
+                switch (buttClicked) {
+                    case 'searchByDelCoBtn':
+                        searchType = 'delco';
+                        //configure data object for a search by delegate/company details
+                        var data = {
+                            firstname: $('#firstname').val(),
+                            lastname: $('#lastname').val(),
+                            company: $('#company').val(),
+                            trainer: $('#trainer').val(),
+                            from: $('#from2').val(),
+                            to: $('#to2').val(),
+                            searchType: searchType
+                        }
+                        break;
+                    case 'searchByCourseBtn':
+                        searchType = 'course';
+                        //configure data object for a search by course details
+                        var data = {
+                            courseId: $('#course').val(),
+                            from: $('#from').val(),
+                            to: $('#to').val(),
+                            searchType: searchType
+                        }
+                        break;
+                }
+
+                //send the AJAX request
+                $.ajax({
+                    url: 'php/getTrainerLedEvals.php',
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    success: function(data) {
+                        //call function to display the results in HTML table
+                        switch (searchType) {
+                            case 'course':
+                                buildResults(data, 'resultsByCourse');
+                                break;
+                            case 'delco':
+                                buildResults(data, 'resultsByDelCo');
+                                break;
+                        }
+                    },
+                    error: function(x, m, s) {
+                        console.log(m)
+                    }
+                });
+            }
+
+            function buildResults(data, displayTable) {
+                //console.log(data);
+                //hide table to be used
+                $('#' + displayTable).hide();
+                //target appropriate table based on displayTable parameter
+                $('#' + displayTable + ' tbody').html('');
+
+
+                //clear
+                resetLiveData();
+
+
+                //loop thru results of AJAX request
+                var numResults = data.length;
+                for (var i = 0; i < numResults; i++) {
+                    var str = '<tr>';
+                    str += '<td>' + data[i].lastname + '</td>';
+                    str += '<td>' + data[i].firstname + '</td>';
+                    var total = Number(data[i].activities) +
+                        Number(data[i].classroom) +
+                        Number(data[i].communicates) +
+                        Number(data[i].confirmation) +
+                        Number(data[i].enthusiastic) +
+                        Number(data[i].equipment) +
+                        Number(data[i].knowledgeable) +
+                        Number(data[i].objectives) +
+                        Number(data[i].organised) +
+                        Number(data[i].pace) +
+                        Number(data[i].participation) +
+                        Number(data[i].prepared)
+                    str += '<td>' + total + '</td>';
+                    str += '<td><a href="#" class="details" data-id="' + data[i].id + '">View</a></td>';
+                    str += '</tr>';
+                    $('#' + displayTable + ' tbody').append(str);
+                    $('#' + displayTable).fadeIn();
+
+                    //organise data for pie Chart
+
+                    liveData.enthusiastic[data[i].enthusiastic]++;
+                    //console.log(liveData.enthusiastic[4]);
+                    liveData.classroom[data[i].classroom]++;
+                    liveData.activities[data[i].activities]++;
+                    liveData.communicates[data[i].communicates]++;
+                    liveData.confirmation[data[i].confirmation]++;
+                    liveData.equipment[data[i].equipment]++;
+                    liveData.knowledgeable[data[i].knowledgeable]++;
+                    liveData.objectives[data[i].objectives]++;
+                    liveData.organised[data[i].organised]++;
+                    liveData.pace[data[i].pace]++;
+                    liveData.participation[data[i].participation]++;
+                    liveData.prepared[data[i].prepared]++;
+
+
+                }
+                $('#charting').fadeIn();
+                // $('#myChart').hide();
+
+            }
+
+
+
+            //END GET TRAINER LED EVALS LOGIC*****************************************************************//
+
+
+            //GET COURSES FOR SELECT LOGIC **********************************************************//
+            //function to extract URL params
+            function getParameterByName(name, url) {
+                if (!url) {
+                    url = window.location.href;
+                }
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            //function to get courses from DB and display in courses select menu
+            function getCourses() {
+                //create data object which will act as payload in AJAX request to server side code
+                var data = {};
+                //check if there is a URL param to act as a filter server side
+                if (getParameterByName('c') != undefined) {
+                    //if there is a URL param called c add it to the data payload
+                    data.c = getParameterByName('c');
+                }
+                //send AJAX request to server to retrieve courses
+                $.ajax({
+                    url: 'php/getCourses.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data: data,
+                    success: function(data) {
+
+                        /*
+                        data model returned is an array of objects. each object is modelled like so:
+                        {
+                          courseTypeId:NUMBER,
+                          courseTypeTitle:STRING,
+                          courses:ARRAY[
+                            {
+                              courseId:NUMBER,
+                              courseTitle:STRING
+                            }
+                          ]
+                        }
+                        */
+
+                        //clear the course select menu of exisitng options
+                        $('#course').html('');
+                        //start adding elements to the #course select menu
+                        $('#course').append('<option value="">Select a course...</option>');
+                        //loop thru each object in the array of results of AJAX request
+                        var numCourseTypes = data.length;
+                        for (var i = 0; i < numCourseTypes; i++) {
+                            //start concatenating the optgroup string
+                            var optGroup = '<optgroup label="' + data[i].courseTypeTitle + '">';
+                            //now loop thru each course in the objects's courses array
+                            var numCourses = data[i].courses.length;
+                            for (var c = 0; c < numCourses; c++) {
+                                //add an option for each course
+                                optGroup += '<option value="' + data[i].courses[c].courseId + '">' + data[i].courses[c].courseTitle + '</option>';
+                            }
+                            //complete the optgroup string
+                            optGroup += '</optgroup>';
+                            //add it to the select menu
+                            $('#course').append(optGroup);
+
+                        }
+                        //add 'chosen' jquery plugin functionality to the select menu
+                        //$('#course').chosen(config);
+                        $("#course").selectmenu();
+                    },
+                    error: function(h, m, s) {
+                        console.log(m);
+                    }
+                });
+            }
+            getCourses();
+
+            //END GET COURSES FOR SELECT LOGIC **********************************************************//
+
+
+
+            //GET COURSE TYPES LOGIC ********************************************************
+            function getCourseTypes() {
+                $.ajax({
+                    url: 'php/getCourseTypes.php',
+                    type: 'get',
+                    dataType: 'json',
+
+                    success: function(data) {
+                        $('#courseType').html(''); //clear the select menu
+                        var numCourseTypes = data.length;
+                        for (var i = 0; i < numCourseTypes; i++) {
+                            var str = '<option value="' + data[i].id + '">' + data[i].course_type + '</option>'
+                            $('#courseType').append(str);
+                        }
+                    },
+                    error: function(x, m, s) {
+                        console.log(s)
+                    }
+                });
+            }
+            getCourseTypes();
+            //END GET COURSE TYPES LOGIC ********************************************************
+
+            //ADD NEW COURSE TYPE LOGIC *************************************************************
+            $('#addCourseTypeBtn').click(function(e) {
+                e.preventDefault();
+                var data = {
+                    courseType: $('#newCourseType').val()
+                }
+                $.ajax({
+                    url: 'php/addNewCourseType.php',
+                    type: 'post',
+                    dataType: 'text',
+                    data: data,
+                    success: function(data) {
+                        getCourseTypes();
+                    },
+                    error: function(x, m, s) {
+                        console.log(s)
+                    }
+                });
+            });
+            //END ADD NEW COURSE TYPE LOGIC *************************************************************
+
+            //ADD NEW COURSE LOGIC ********************************************************
+            $('#addCourseBtn').click(function(e) {
+                e.preventDefault();
+                var data = {
+                    courseTypeId: $('#courseType').val(),
+                    courseName: $('#courseName').val()
+                }
+                $.ajax({
+                    url: 'php/addNewCourse.php',
+                    type: 'post',
+                    dataType: 'text',
+                    data: data,
+                    success: function(data) {
+                        console.log(data);
+                    },
+                    error: function(x, m, s) {
+                        console.log(s)
+                    }
+                });
+            });
+            //END ADD NEW COURSE LOGIC ********************************************************
+
+        });
+    </script>
+
+    <!-- dialog for displaying eval details -->
+    <div id="evalDetailsDialog">
+        <h3>Delegate Details</h3>
+        <ul>
+            <li id="detail-firstname"><strong>First Name: </strong><span></span></li>
+            <li id="detail-lastname"><strong>Last Name: </strong><span></span></li>
+            <li id="detail-company"><strong>Company: </strong><span></span></li>
+            <li id="detail-email"><strong>Email: </strong><span></span></li>
+            <li id="detail-tel"><strong>Tel: </strong><span></span></li>
+            <li id="detail-course"><strong>Course: </strong><span></span></li>
+            <li id="detail-trainer"><strong>Trainer: </strong><span></span></li>
+            <li id="detail-start"><strong>Start Date: </strong><span></span></li>
+            <li id="detail-date"><strong>Date of Evaluation: </strong><span></span></li>
+        </ul>
+        <h3>Trainer</h3>
+        <ul>
+            <li id="detail-enthusiastic"><strong>Trainer was enthusiastic: </strong><span></span></li>
+            <li id="detail-knowledgeable"><strong>Trainer was knowledgeable: </strong><span></span></li>
+            <li id="detail-prepared"><strong>Trainer was well prepared: </strong><span></span></li>
+            <li id="detail-participation"><strong>Trainer encourages participation: </strong><span></span></li>
+            <li id="detail-communicates"><strong>Trainer communicates clearly: </strong><span></span></li>
+            <li id="detail-trainerComments"><strong>Comments: </strong><span></span></li>
+        </ul>
+        <h3>Course Content &amp; Structure</h3>
+        <ul>
+            <li id="detail-objectives"><strong>The course objectives are clearly stated: </strong><span></span></li>
+            <li id="detail-organised"><strong>The course was well organised: </strong><span></span></li>
+            <li id="detail-pace"><strong>The pace of the course was appropriate: </strong><span></span></li>
+            <li id="detail-activities"><strong>The course activities were useful: </strong><span></span></li>
+            <li id="detail-courseComments"><strong>Comments: </strong><span></span></li>
+        </ul>
+        <h3>Classroom &amp; Personnel</h3>
+        <ul>
+            <li id="detail-confirmation"><strong>I received full booking confirmation and course details prior to course commencement: </strong><span></span></li>
+            <li id="detail-classroom"><strong>The classroom was comfortable: </strong><span></span></li>
+            <li id="detail-equipment"><strong>The equipment functioned properly: </strong><span></span></li>
+            <li id="detail-classroomComments"><strong>Comments: </strong><span></span></li>
+        </ul>
+        <h3>Further Details</h3>
+        <ul>
+            <li id="detail-comments"><strong>Have you any further comments? </strong><span></span></li>
+            <li id="detail-other_courses"><strong>Are you interested in any further courses? </strong><span></span></li>
+            <li id="detail-recommend"><strong>Would you recommend this course to others? </strong><span></span></li>
+            <li id="detail-canuse"><strong>May we use your comments? </strong><span></span></li>
+        </ul>
+    </div>
+
+
+
+</body>
+
+</html>
