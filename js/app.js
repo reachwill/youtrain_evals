@@ -33,6 +33,12 @@ var preparedData = new preparedDataPattern(); //for trainer led eval summary
 var preparedMidData = new preparedDataPattern(); //for apprenticeship MID eval summary
 var preparedFinalData = new preparedDataPattern(); //for apprenticeship FINAL eval summary
 
+function getAverageScore(numFields,numResults,sumOfAll){
+  var max = numFields * 6;
+  var maxTotalScore = max * numResults;
+  return (sumOfAll +'/'+ maxTotalScore +' which as a percentage = '+((sumOfAll/maxTotalScore)*100).toFixed(2) +'%');
+}
+
 
 $(function() {
 
@@ -395,16 +401,12 @@ $(function() {
         }
         $('#chartButtons').fadeIn();
 
-        getAverageScore(Object.keys(liveData).length,numResults,sumOfAll);
+        $('#trainerAverage').text(getAverageScore(Object.keys(liveData).length,numResults,sumOfAll));
         // $('#myChart').hide();
 
     }
 
-    function getAverageScore(numFields,numResults,sumOfAll){
-      var max = numFields * 6;
-      var maxTotalScore = max * numResults;
-      console.log(sumOfAll +'/'+ maxTotalScore +'which as a percentage = '+((sumOfAll/maxTotalScore)*100).toFixed(2) +'%');
-    }
+
 
 
 
@@ -665,6 +667,8 @@ $(function() {
           return;
         }
 
+        var sumOfAll = 0;//for averaging Callback
+
         //loop thru results of AJAX request
         var numResults = data.length;
         for (var i = 0; i < numResults; i++) {
@@ -680,7 +684,8 @@ $(function() {
                 Number(data[i].ongoing) +
                 Number(data[i].clarity) +
                 Number(data[i].frequency) +
-                Number(data[i].helpfulness)
+                Number(data[i].helpfulness);
+            sumOfAll += total;//sent to calculate average
             str += '<td>' + total + '</td>';
             str += '<td><a href="#" class="details" data-id="' + data[i].id + '">View</a></td>';
             str += '</tr>';
@@ -726,6 +731,8 @@ $(function() {
 
         }
 
+        //display average score
+        interval=='mid'?$('#midAverage').text(getAverageScore(Object.keys(liveMidData).length,numResults,sumOfAll)):$('#finalAverage').text(getAverageScore(Object.keys(liveFinalData).length,numResults,sumOfAll));
         // $('#myChart').hide();
 
     }
